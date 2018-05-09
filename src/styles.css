@@ -1,1 +1,160 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* COLORS
+  primary: #9c27b0
+    light: #d05ce3
+    dark: #6a0080
+
+  secondary: #64ffda
+    light: #9effff
+    dark: #14cba8
+*/
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- typography ---- */
+
+body {
+  color: #111;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 147%;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  margin: 0;
+}
+
+.info-text {
+  text-align: center;
+}
+
+.site-main {
+  color: white;
+}
+
+.right-side {
+  color: #14cba8;
+}
+
+.total-balance {
+  font-size: 36px;
+  font-weight: 400;
+  color:#00bfa5;
+}
+
+.account-balance {
+  font-size: 24px;
+}
+
+/*----- layout ------*/
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #E0E0E0
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.site-main {
+  width: 100%;
+  margin: auto;    
+}
+
+.left-side {
+  width: 50%;
+  height: 40vh;
+  float: left;
+}
+
+.right-side {
+  height: 60vh;
+}
+
+.form-section {
+  padding-top: 20px;
+}
+
+.total-balance-card{
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card .card-content {
+  padding: 18px;
+}
+
+
+@media (min-width: 1024px) {
+  .left-side {
+    height: 100vh;
+  }
+  .right-side {
+    height: 100vh;
+  }
+  .info-text {
+    padding-top: 25%;
+  }
+  .form-section {
+    padding-top: 100px;
+  }
+}
+
+/*------components -----*/
+
+.form-container {
+  display: inline-block; 
+  padding: 32px 48px 0px 48px; 
+  border: 1px solid #EEE;
+}
+
+form.is-processing {
+	opacity: 0.5;
+}
+
+form .validation {
+	margin: 5px 0 10px;
+	color: red;
+}
+
+form .field.has-error input {
+	border: 1px solid  red;
+}
+
+.login-signup-anchor {
+  padding-bottom: 20px;
+}
+
+.accounts-cards  {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+}
+
+.account-card {
+	flex: 0 1 33%;
+}
+
+.accounts-cards a {
+  color: #9c27b0;
+}

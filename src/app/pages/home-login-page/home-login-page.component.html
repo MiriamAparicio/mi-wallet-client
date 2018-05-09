@@ -1,0 +1,28 @@
+<div class="row site-main">
+  <div class="col s12 l6 purple left-side">
+    <section class=" info-text">
+      <h1>Mi-Wallet</h1>
+      <p>Mauris sem eros, mollis eget rhoncus euismod, lobortis ut sapien. Pellentesque tincidunt ex in est porttitor laoreet.
+        Aliquam tincidunt, sem vel faucibus convallis, odio urna consectetur nunc, in scelerisque lorem eros euismod neque.</p>
+    </section>
+  </div>
+  <div class="col s12 l6 right-side">
+    <section class="form form-section container">
+      <div class="form-container z-depth-1 grey lighten-4 row">
+        
+        <h5>Login</h5>
+         <app-auth-form 
+         [feedbackEnabled]="feedbackEnabled" 
+         [processing]="processing" 
+         [error]="error" 
+         [authMode]="authMode"
+         (submitData)="submitForm($event)">
+        </app-auth-form>
+        
+      </div>
+      <div>
+        <a class="login-signup-anchor" [routerLink]="['/signup']">Create account</a>
+      </div>
+    </section>
+  </div>
+</div>
