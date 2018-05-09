@@ -11,14 +11,19 @@
       <div class="form-container z-depth-1 grey lighten-4 row">
 
         <h5>Sign up</h5>
+                
         <app-auth-form 
-        [feedbackEnabled]="feedbackEnabled" 
-        [processing]="processing" 
-        [error]="error" 
-        [authMode]="authMode" 
-        (submitData)="submitForm($event)">
+          [feedbackEnabled]="feedbackEnabled" 
+          [processing]="processing" 
+          [authMode]="authMode" 
+          (invalid)="handleInvalid()"
+          (submitData)="handleSubmitForm($event)">
         </app-auth-form>
-
+        <div *ngIf="error">
+          <!-- case not-found - the username or password are wrong -->
+          <!-- case default  - an unexpected error ocurred, please try again-->
+          <p class="validation">{{error}}</p>
+        </div>
       </div>
       <div>
         <a class="login-signup-anchor" [routerLink]="['/login']">Already have an account?</a>

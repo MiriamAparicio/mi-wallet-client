@@ -1,0 +1,62 @@
+<nav class="purple">
+  <div class="nav-wrapper container">
+    <!-- <a [routerLink]="['/']" class="left">Home</a> -->
+    <p class="brand-logo center">Mi-Wallet</p>
+    <a (click)="logout()" class="right">Logout</a>
+  </div>
+</nav>
+
+<main class="grey lighten-2">
+  <!-- TOTAL CARD -->
+  <div class="row total-balance-card">
+    <div class="col m4 l4"></div>
+    <div class="col s12 m4 l4">
+      <div class="card grey lighten-4">
+        <div class="card-content center">
+          <p>Balance</p>
+        </div>
+        <div class="card-content center">
+          <p class="total-balance teal-text">2000€</p>
+        </div>
+      </div>
+    </div>
+    <div class="col m4 l4"></div>
+  </div>
+  <!-- ACCOUNT CARDS -->
+  <div class="container accounts-cards">
+    <div class="card grey lighten-4 account-card z-depth-3">
+      <div class="card-content center">
+        <a href="#" class="left">Bank</a>
+      </div>
+      <div class="card-content center">
+        <p class="account-balance teal-text">1950€</p>
+      </div>
+    </div>
+    <div class="card grey lighten-4 account-card z-depth-3">
+      <div class="card-content center">
+        <a href="#" class="left">Cash</a>
+      </div>
+      <div class="card-content center">
+        <p class="account-balance teal-text">50€</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIST LAST RECORDS -->
+
+  <div class="container">
+    <h5>Last records</h5>
+  </div>
+
+  <div class="collection container z-depth-2">
+    <a href="#!" class="collection-item grey lighten-4">
+      <span class="badge">1</span>Alan</a>
+    <a href="#!" class="collection-item grey lighten-4">
+      <span class="new badge">4</span>Alan</a>
+    <a href="#!" class="collection-item grey lighten-4">Alan</a>
+    <a href="#!" class="collection-item grey lighten-4">
+      <span class="badge">14</span>Alan</a>
+  </div>
+
+
+</main>

@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 export class AuthFormComponent implements OnInit {
 
   @Input() feedbackEnabled: boolean;
-  @Input() error: string;
   @Input() processing: boolean;
   @Input() authMode: any;
+
   useremail: String;
   password: String;
 
+  @Output() invalid: EventEmitter<any> = new EventEmitter();
   @Output() submitData: EventEmitter<any> = new EventEmitter();
 
   constructor (private router: Router) { }
@@ -23,15 +24,15 @@ export class AuthFormComponent implements OnInit {
   }
 
   submitForm (form) {
-    this.error = '';
-    this.feedbackEnabled = true;
     if (form.valid) {
-      this.processing = true;
       const user = {
         useremail: this.useremail,
         password: this.password
       }
       this.submitData.emit(user);
+    }
+    else {
+      this.invalid.emit();
     }
   }
 

@@ -18,9 +18,10 @@ import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { AuthService } from './services/auth.service';
 
 /** guards */
-import { InitAuthGuardService } from './guards/init-auth-guard.service';
-import { RequireAnonGuardService } from './guards/require-anon-guard.service';
-import { RequireUserGuardService } from './guards/require-user-guard.service';
+import { InitAuthGuardService } from './services/guards/init-auth-guard.service';
+import { RequireAnonGuardService } from './services/guards/require-anon-guard.service';
+import { RequireUserGuardService } from './services/guards/require-user-guard.service';
+import { AccountsOverviewPageComponent } from './pages/accounts/accounts-overview-page/accounts-overview-page.component';
 
 
 /** routes */
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login', canActivate: [InitAuthGuardService]},
   { path: 'login', component: HomeLoginPageComponent, canActivate: [RequireAnonGuardService] },
   { path: 'signup', component: HomeSignupPageComponent, canActivate: [RequireAnonGuardService] },
-  // { path: 'page', component: ... , canActivate: [RequireUserGuardService] }
+  { path: 'accounts/overview', component: AccountsOverviewPageComponent , canActivate: [RequireUserGuardService] }
 ];
 
 @NgModule({
@@ -37,6 +38,7 @@ const routes: Routes = [
     HomeLoginPageComponent,
     HomeSignupPageComponent,
     AuthFormComponent,
+    AccountsOverviewPageComponent,
     
   ],
   imports: [

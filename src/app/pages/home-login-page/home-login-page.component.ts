@@ -12,8 +12,8 @@ export class HomeLoginPageComponent implements OnInit {
 
   feedbackEnabled = false;
   error = null;
-  processing = false;
-  authMode:String = "Login";
+  processing = null;
+  authMode: String = "Login";
 
   constructor (
     private authService: AuthService,
@@ -22,14 +22,20 @@ export class HomeLoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitData (user) {
-      this.authService.login(user)
-        .then((result) => {
-          this.router.navigate(['/accounts/overview']);
-        })
-        .catch((err) => {
-          this.error = err.error.code; // :-)
+  handleInvalid() {
+    this.feedbackEnabled = true;
+  }
+
+  handleSubmitForm (user) {
+    this.processing = true;
+
+    this.authService.login(user)
+    .then((result) => {
+      this.router.navigate(['/accounts/overview']);
+    })
+    .catch((err) => {
           this.processing = false;
+          this.error = err.error.code; // :-)
           this.feedbackEnabled = false;
         });
     }

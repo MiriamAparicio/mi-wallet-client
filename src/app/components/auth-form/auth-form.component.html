@@ -1,7 +1,7 @@
 <form (submit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
   <div class="row">
     <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && useremailField.errors}">
-      <input type="email" name="useremail" [(ngModel)]="useremail" #useremailField="ngModel" required minlength="6" [disabled]="processing"
+      <input type="email" name="useremail" [(ngModel)]="useremail" #useremailField="ngModel" required minlength="4" [disabled]="processing"
         placeholder="Enter your email" />
       <div *ngIf="feedbackEnabled && useremailField.errors">
         <p *ngIf="useremailField.errors.required" class="validation">email required</p>
@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && passwordField.errors}">
-      <input type="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required minlength="6" [disabled]="processing"
+      <input type="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required minlength="4" [disabled]="processing"
         placeholder="Enter your password" />
       <div *ngIf="feedbackEnabled && passwordField.errors">
         <p *ngIf="passwordField.errors.required" class="validation">password required</p>
@@ -20,7 +20,8 @@
     </div>
   </div>
   <div class="row">
-    <button class="col s12 btn btn-large waves-effect purple" type="submit" [disabled]="processing">{{authMode}}</button>
+    <button class="col s12 btn btn-large waves-effect purple" 
+    type="submit" [disabled]="processing">{{authMode}}</button>
     <div *ngIf="feedbackEnabled && form.invalid">
       <p class="validation">there are errors in the form, please review the fields</p>
     </div>

@@ -22,7 +22,7 @@ export class HomeSignupPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitData(user) {
+  handleSubmitForm (user) {
     this.authService.signup(user)
       .then((result) => {
         this.router.navigate(['/accounts/overview']);
