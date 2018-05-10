@@ -19,10 +19,9 @@
           (invalid)="handleInvalid()"
           (submitData)="handleSubmitForm($event)">
         </app-auth-form>
-        <div *ngIf="error">
-          <!-- case not-found - the username or password are wrong -->
-          <!-- case default  - an unexpected error ocurred, please try again-->
-          <p class="validation">{{error}}</p>
+        <div *ngIf="error" [ngSwitch]="error">
+          <p class="validation" *ngSwitchCase="'not-found'">the email or password are wrong</p>
+          <p class="validation" *ngSwitchDefault>an unexpected error ocurred, please try again</p>
         </div>
       </div>
       <div>

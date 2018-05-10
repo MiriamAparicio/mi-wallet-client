@@ -11,7 +11,7 @@
       <div class="form-container z-depth-1 grey lighten-4 row">
 
         <h5>Sign up</h5>
-                
+
         <app-auth-form 
           [feedbackEnabled]="feedbackEnabled" 
           [processing]="processing" 
@@ -19,10 +19,9 @@
           (invalid)="handleInvalid()"
           (submitData)="handleSubmitForm($event)">
         </app-auth-form>
-        <div *ngIf="error">
-          <!-- case not-found - the username or password are wrong -->
-          <!-- case default  - an unexpected error ocurred, please try again-->
-          <p class="validation">{{error}}</p>
+        <div *ngIf="error" [ngSwitch]="error">
+          <p class="validation" *ngSwitchCase="'useremail-not-unique'">This email is already taken</p>
+          <p class="validation" *ngSwitchDefault>an unexpected error ocurred, please try again</p>
         </div>
       </div>
       <div>
