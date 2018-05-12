@@ -1,0 +1,43 @@
+<nav class="purple">
+  <div class="nav-wrapper container">
+    <a [routerLink]="['/accounts/overview']" class="left">Home</a>
+    <p class="brand-logo center">Mi-Wallet</p>
+    <a (click)="logout()" class="right">Logout</a>
+  </div>
+</nav>
+
+<main class="grey lighten-2">
+
+  <div class="account-detail container accounts-cards">
+    <div class="card grey lighten-4 account-card z-depth-3" *ngIf="!account">
+      Loading...
+    </div>
+    <div class="card grey lighten-4 account-card z-depth-3">
+      <div class="card-content center">
+        <p class="left purple-text">{{account.name}}</p>
+      </div>
+      <div class="card-content center">
+        <p class="account-balance teal-text">{{accountBalance}}€</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h5>Account records</h5>
+  </div>
+  
+  <div class="container" *ngIf="records.length == 0">
+    <p class="purple-text">No records in this account</p>
+  </div>
+
+  <div class="collection container z-depth-2" *ngFor="let record of records">
+    <app-records-list [record]="record" [categories]="categories"></app-records-list>
+  </div>
+
+  <div class="floating-buttons-container">
+    <a [routerLink]="['/records/create']" class="buttons right btn-floating btn-large waves-effect waves-light purple">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+
+</main>

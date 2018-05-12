@@ -1,6 +1,5 @@
 <nav class="purple">
   <div class="nav-wrapper container">
-    <!-- <a [routerLink]="['/']" class="left">Home</a> -->
     <p class="brand-logo center">Mi-Wallet</p>
     <a (click)="logout()" class="right">Logout</a>
   </div>
@@ -9,7 +8,7 @@
 <main class="grey lighten-2">
 
   <!-- TOTAL CARD -->
-  
+
   <div class="row total-balance-card">
     <div class="col m4 l4"></div>
     <div class="col s12 m4 l4">
@@ -18,7 +17,7 @@
           <p>Balance</p>
         </div>
         <div class="card-content center">
-          <p class="total-balance teal-text">2000€</p>
+          <p class="total-balance teal-text">2045.37€</p>
         </div>
       </div>
     </div>
@@ -28,21 +27,9 @@
   <!-- ACCOUNT CARDS -->
 
   <div class="container accounts-cards">
-    <div class="card grey lighten-4 account-card z-depth-3">
-      <div class="card-content center">
-        <a href="#" class="left">Bank</a>
-      </div>
-      <div class="card-content center">
-        <p class="account-balance teal-text">1950€</p>
-      </div>
-    </div>
-    <div class="card grey lighten-4 account-card z-depth-3">
-      <div class="card-content center">
-        <a href="#" class="left">Cash</a>
-      </div>
-      <div class="card-content center">
-        <p class="account-balance teal-text">50€</p>
-      </div>
+    <div [routerLink]="['/accounts', account._id]" class="card grey lighten-4 account-card z-depth-3" 
+    *ngFor="let account of accounts">
+       <app-account-card [account]="account" [accountBalance]="accountBalance"></app-account-card>
     </div>
   </div>
 
@@ -52,27 +39,21 @@
     <h5>Last records</h5>
   </div>
 
-  <div class="collection container z-depth-2">
-    <a href="#!" class="collection-item grey lighten-4">
-      <span class="badge">1</span>Alan</a>
-    <a href="#!" class="collection-item grey lighten-4">
-      <span class="new badge">4</span>Alan</a>
-    <a href="#!" class="collection-item grey lighten-4">Alan</a>
-    <a href="#!" class="collection-item grey lighten-4">
-      <span class="badge">14</span>Alan</a>
+  <div class="collection container z-depth-2" *ngFor="let record of latestRecords">
+    <app-records-list [record]="record" [categories]="categories"></app-records-list>
   </div>
 
   <div class="floating-buttons-container">
-    <a class="buttons" tooltip="New account">
+    <a [routerLink]="['/accounts/create']" class="buttons" tooltip="New account">
       <i class="material-icons account-icon">account_balance_wallet</i>
     </a>
-    <a class="buttons" tooltip="New record">
+    <a [routerLink]="['/records/create']" class="buttons" tooltip="New record">
       <i class="material-icons list-icon">list</i>
     </a>
-    <a class="buttons btn-floating btn-large waves-effect waves-light teal accent-2">
+    <a class="buttons btn-floating btn-large waves-effect waves-light purple">
       <i class="material-icons">add</i>
     </a>
   </div>
 
-    
+
 </main>

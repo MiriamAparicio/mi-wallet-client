@@ -7,7 +7,7 @@
 
   secondary: #64ffda
     light: #9effff
-    dark: #14cba8
+    dark: #009688
 */
 
 /* ---- reset ---- */
@@ -118,14 +118,19 @@ main {
   .form-section {
     padding-top: 100px;
   }
+  .form-container {
+    width: 400px
+  }
 }
 
 /*------components -----*/
 
 .form-container {
-  display: inline-block; 
+  display: inline-block flex; 
   padding: 32px 48px 0px 48px; 
   border: 1px solid #EEE;
+  justify-content: center;
+  align-items: center;
 }
 
 form.is-processing {
@@ -178,14 +183,14 @@ form .field.has-error input {
   margin: 20px auto 0;
   position: relative;
   -webkit-transition: all .1s ease-out;
-          transition: all .1s ease-out;  
+  transition: all .1s ease-out;  
 }
 
 .buttons:active, 
 .buttons:focus, 
 .buttons:hover {
   box-shadow: 0 0 4px rgba(0,0,0,.14),
-    0 4px 8px rgba(0,0,0,.28);
+  0 4px 8px rgba(0,0,0,.28);
 }
 
 .buttons:not(:last-child) {
@@ -194,16 +199,16 @@ form .field.has-error input {
   margin: 20px auto 0;
   opacity: 0;
   -webkit-transform: translateY(50px);
-      -ms-transform: translateY(50px);
-          transform: translateY(50px);
+  -ms-transform: translateY(50px);
+  transform: translateY(50px);
 }
 
 .floating-buttons-container:hover 
 .buttons:not(:last-child) {
   opacity: 1;
   -webkit-transform: none;
-      -ms-transform: none;
-          transform: none;
+  -ms-transform: none;
+  transform: none;
   margin: 15px auto 0;
 }
 
@@ -211,26 +216,26 @@ form .field.has-error input {
 
 .buttons:nth-last-child(1) {
   -webkit-transition-delay: 25ms;
-          transition-delay: 25ms;
+  transition-delay: 25ms;
   background-size: contain;
 }
 
 .buttons:not(:last-child):nth-last-child(2) {
   -webkit-transition-delay: 50ms;
-          transition-delay: 20ms;
-  background-color: #d05ce3;
-  color:#9effff;
+  transition-delay: 20ms;
+  background-color: #009688;
+  color:white;
   text-align: center;
-  /* background-image: url('https://cbwconline.com/IMG/Facebook-Flat.png'); */
+
   background-size: contain;
 }
 
 
 .buttons:not(:last-child):nth-last-child(3) {
   -webkit-transition-delay: 75ms;
-          transition-delay: 40ms;
-  background-color: #9effff;
-  color:#d05ce3;
+  transition-delay: 40ms;
+  background-color:#009688;
+  color:white;
   text-align: center;
   background-size: contain;
 }
@@ -269,12 +274,12 @@ form .field.has-error input {
 
 select {
   -webkit-appearance: none;
-  /* appearance: none; */
-  border: 1px solid #d05ce3;
+  appearance: none;
+  border: 1px solid #009688;
   line-height: 1;
   outline: 0;
-  color: #d05ce3;
-  border-color: #d05ce3;
+  color: #009688;
+  border-color: #009688;
   padding: 0.65em 2.5em 0.55em 0.75em;
   border-radius: 3px;
   background-color: white;

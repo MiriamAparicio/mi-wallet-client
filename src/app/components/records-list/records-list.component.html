@@ -1,0 +1,21 @@
+<div class="collection-item grey lighten-4 {{categories[record.category].class}} row" *ngIf="!record">
+  Loading...
+</div>
+<div class="collection-item grey lighten-4 {{categories[record.category].class}} row">
+  <div class="col 2 left">
+    <i class="material-icons">{{categories[record.category].icon}}</i>
+  </div>
+  <div class="col 2 center">
+    <p>{{categories[record.category].label}}</p>
+  </div>
+  <div class="col 2">
+    <!-- NOT WORKING ON THE DETAIL PAGE(RECORDS NOT POPULATED) NOT NEEDED BUT GOT ERROR -->
+    <p>{{record.account.name}}</p>
+  </div>
+  <div class="col 2">
+    <p>{{record.date | date: 'd/MM/yy'}}</p>
+  </div>
+  <div class="col 2 right">
+    <p>{{record.amount}}</p>
+  </div>
+</div>

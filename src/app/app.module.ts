@@ -10,18 +10,30 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeLoginPageComponent } from './pages/home-login-page/home-login-page.component';
 import { HomeSignupPageComponent } from './pages/home-signup-page/home-signup-page.component';
+import { AccountsOverviewPageComponent } from './pages/accounts/accounts-overview-page/accounts-overview-page.component';
+import { AccountDetailPageComponent } from './pages/accounts/account-detail-page/account-detail-page.component';
+import { AccountCreatePageComponent } from './pages/accounts/account-create-page/account-create-page.component';
+import { RecordCreatePageComponent } from './pages/records/record-create-page/record-create-page.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+
 
 /** components */
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { AccountCardComponent } from './components/account-card/account-card.component';
+import { RecordsListComponent } from './components/records-list/records-list.component';
 
 /** services */
 import { AuthService } from './services/auth.service';
+import { AccountsService } from './services/accounts.service';
+import { RecordsService } from './services/records.service';
+import { CategoriesService } from './services/categories.service';
+
 
 /** guards */
 import { InitAuthGuardService } from './services/guards/init-auth-guard.service';
 import { RequireAnonGuardService } from './services/guards/require-anon-guard.service';
 import { RequireUserGuardService } from './services/guards/require-user-guard.service';
-import { AccountsOverviewPageComponent } from './pages/accounts/accounts-overview-page/accounts-overview-page.component';
+
 
 
 /** routes */
@@ -29,7 +41,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login', canActivate: [InitAuthGuardService]},
   { path: 'login', component: HomeLoginPageComponent, canActivate: [RequireAnonGuardService] },
   { path: 'signup', component: HomeSignupPageComponent, canActivate: [RequireAnonGuardService] },
-  { path: 'accounts/overview', component: AccountsOverviewPageComponent , canActivate: [RequireUserGuardService] }
+  { path: 'accounts/overview', component: AccountsOverviewPageComponent , canActivate: [RequireUserGuardService] },
+  { path: 'accounts/create', component: AccountCreatePageComponent, canActivate: [RequireUserGuardService] },
+  { path: 'accounts/:id', component: AccountDetailPageComponent, canActivate: [RequireUserGuardService] },
+  { path: 'records/create', component: RecordCreatePageComponent, canActivate: [RequireUserGuardService] },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -39,7 +55,12 @@ const routes: Routes = [
     HomeSignupPageComponent,
     AuthFormComponent,
     AccountsOverviewPageComponent,
-    
+    AccountCardComponent,
+    PageNotFoundComponent,
+    RecordsListComponent,
+    AccountDetailPageComponent,
+    AccountCreatePageComponent,
+    RecordCreatePageComponent,    
   ],
   imports: [
     BrowserModule,
@@ -51,7 +72,10 @@ const routes: Routes = [
     AuthService,
     InitAuthGuardService,
     RequireAnonGuardService,
-    RequireUserGuardService
+    RequireUserGuardService,
+    AccountsService,
+    RecordsService,
+    CategoriesService
   ],
   bootstrap: [AppComponent]
 })

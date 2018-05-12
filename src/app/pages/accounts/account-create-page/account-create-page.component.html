@@ -1,0 +1,32 @@
+<nav class="purple">
+  <div class="nav-wrapper container">
+    <a [routerLink]="['/accounts/overview']" class="left">Home</a>
+    <p class="brand-logo center">Mi-Wallet</p>
+    <a (click)="logout()" class="right">Logout</a>
+  </div>
+</nav>
+
+<section class="form form-section container">
+  <div class="form-container z-depth-1 grey lighten-4 row">
+
+    <h5>New account</h5>
+    <form (submit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && accountNameField.errors}">
+          <input type="text" name="accountName" [(ngModel)]="accountName" #accountNameField="ngModel" required [disabled]="processing"
+            placeholder="Account name" />
+          <div *ngIf="feedbackEnabled && accountNameField.errors">
+            <p *ngIf="accountNameField.errors.required" class="validation">account name required</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="col s12 btn btn-large waves-effect purple" type="submit" [disabled]="processing">Create</button>
+        <div *ngIf="feedbackEnabled && form.invalid">
+          <p class="validation">there are errors in the form</p>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</section>
