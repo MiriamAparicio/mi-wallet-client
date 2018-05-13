@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { CategoriesService } from '../../../services/categories.service';
 import { AccountsService } from '../../../services/accounts.service';
+import { RecordsService } from '../../../services/records.service';
 
 @Component({
   selector: 'app-record-create-page',
@@ -23,14 +24,15 @@ export class RecordCreatePageComponent implements OnInit {
   category: String;
   amount: number;
   date: Date;
-  account: String;
+  account: any;
   type: String;
 
   constructor (
     private authService: AuthService,
     private router: Router,
     private categoriesService: CategoriesService,
-    private accountsService: AccountsService) { }
+    private accountsService: AccountsService,
+    private recordService: RecordsService) { }
 
   ngOnInit() {
 
@@ -44,9 +46,30 @@ export class RecordCreatePageComponent implements OnInit {
         this.categories = data;
         this.categoriesKeys = Object.keys(this.categories);
       });
+  }
 
-    
-
+  submitForm(form) {
+    this.error = '';
+    this.feedbackEnabled = true;
+    if (form.valid) {
+      this.processing = true;
+      const record = {
+        category: this.category,
+        amount: this.amount,
+        date: this.date,
+        account: this.account._id,
+        type: this.type
+      }
+      this.recordService.create(record)
+        .then((result) => {
+          this.router.navigate(['/accounts/overview']);
+        })
+        .catch((err) => {
+          this.error = err.error.code; // :-)
+          this.processing = false;
+          this.feedbackEnabled = false;
+        });
+    }
   }
 
   logout() {

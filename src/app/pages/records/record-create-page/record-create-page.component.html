@@ -11,27 +11,76 @@
 
     <h5>New record</h5>
     <form (submit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+
       <div class="row">
-        <select [(ngModel)]="category" name="category" class="browser-default">
-          <option [value]="" disabled selected>Choose category</option>
-          <option *ngFor="let key of categoriesKeys" [value]="key">{{categories[key].label}}</option>
-        </select>
-      </div>
-      <div class="row">
-        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && accountNameField.errors}">
-          <input type="text" name="accountName" [(ngModel)]="accountName" #accountNameField="ngModel" required [disabled]="processing"
-            placeholder="Account name" />
-          <div *ngIf="feedbackEnabled && accountNameField.errors">
-            <p *ngIf="accountNameField.errors.required" class="validation">account name required</p>
+        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && categoryField.errors}">
+          <p class="purple-text">Choose category</p>
+          <select [(ngModel)]="category" name="category" class="browser-default" required [disabled]="processing" #categoryField="ngModel">
+            <option [value]="" disabled selected>Choose category</option>
+            <option *ngFor="let key of categoriesKeys" [value]="key">{{categories[key].label}}</option>
+          </select>
+          <div *ngIf="feedbackEnabled && categoryField.errors">
+            <p *ngIf="categoryField.errors.required" class="validation">category required</p>
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && amountField.errors}">
+          <p class="purple-text">Amount</p>
+          <input type="number" name="amount" [(ngModel)]="amount" #amountField="ngModel" required [disabled]="processing"
+            placeholder="Amount" />
+          <div *ngIf="feedbackEnabled && amountField.errors">
+            <p *ngIf="amountField.errors.required" class="validation">amount required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && dateField.errors}">
+          <p class="purple-text">Date</p>
+          <input type="date" name="date" [(ngModel)]="date" #dateField="ngModel" required [disabled]="processing" placeholder="date"
+          />
+          <div *ngIf="feedbackEnabled && dateField.errors">
+            <p *ngIf="dateField.errors.required" class="validation">date required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && accountField.errors}">
+          <p class="purple-text">Choose account</p>
+          <select [(ngModel)]="account" name="account" class="browser-default" required [disabled]="processing" #accountField="ngModel">
+            <option [value]="" disabled selected>Choose account</option>
+            <option *ngFor="let account of accounts" [value]="account.name">{{account.name}}</option>
+          </select>
+          <div *ngIf="feedbackEnabled && accountField.errors">
+            <p *ngIf="accountField.errors.required" class="validation">account required</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12" [ngClass]="{'has-error': feedbackEnabled && typeField.errors}">
+          <p class="purple-text">Choose type</p>
+          <select [(ngModel)]="type" name="type" class="browser-default" required [disabled]="processing" #typeField="ngModel">
+            <option [value]="" disabled selected>Choose type</option>
+            <option [value]="income">Income</option>
+            <option [value]="expense">Expense</option>
+          </select>
+          <div *ngIf="feedbackEnabled && typeField.errors">
+            <p *ngIf="typeField.errors.required" class="validation">type required</p>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <button class="col s12 btn btn-large waves-effect purple" type="submit" [disabled]="processing">Create</button>
         <div *ngIf="feedbackEnabled && form.invalid">
           <p class="validation">there are errors in the form</p>
         </div>
       </div>
+
     </form>
 
   </div>
