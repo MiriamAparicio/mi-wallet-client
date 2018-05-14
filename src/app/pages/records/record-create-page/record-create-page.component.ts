@@ -20,6 +20,7 @@ export class RecordCreatePageComponent implements OnInit {
   accounts: Array<any>;
   categories: Object;
   categoriesKeys: Array<any>;
+  types: Array<String>;
 
   category: String;
   amount: number;
@@ -32,7 +33,7 @@ export class RecordCreatePageComponent implements OnInit {
     private router: Router,
     private categoriesService: CategoriesService,
     private accountsService: AccountsService,
-    private recordService: RecordsService) { }
+    private recordsService: RecordsService) { }
 
   ngOnInit() {
 
@@ -46,6 +47,8 @@ export class RecordCreatePageComponent implements OnInit {
         this.categories = data;
         this.categoriesKeys = Object.keys(this.categories);
       });
+
+    this.types = this.recordsService.types;
   }
 
   submitForm(form) {
@@ -57,10 +60,10 @@ export class RecordCreatePageComponent implements OnInit {
         category: this.category,
         amount: this.amount,
         date: this.date,
-        account: this.account._id,
+        account: this.account,
         type: this.type
       }
-      this.recordService.create(record)
+      this.recordsService.create(record)
         .then((result) => {
           this.router.navigate(['/accounts/overview']);
         })

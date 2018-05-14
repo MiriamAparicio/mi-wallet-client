@@ -17,7 +17,7 @@
           <p>Balance</p>
         </div>
         <div class="card-content center">
-          <p class="total-balance teal-text">2045.37€</p>
+          <p class="total-balance teal-text">{{totalBalance}}€</p>
         </div>
       </div>
     </div>
@@ -27,6 +27,9 @@
   <!-- ACCOUNT CARDS -->
 
   <div class="container accounts-cards">
+    <div *ngIf="accounts.length === 0">
+      <p class="purple-text">No accounts yet, add new account</p>
+    </div>
     <div [routerLink]="['/accounts', account._id]" class="card grey lighten-4 account-card z-depth-3" 
     *ngFor="let account of accounts">
        <app-account-card [account]="account" [accountBalance]="accountBalance"></app-account-card>
@@ -37,6 +40,10 @@
 
   <div class="container">
     <h5>Last records</h5>
+  </div>
+
+  <div class="container" *ngIf="latestRecords.length === 0">
+    <p class="purple-text">No records yet, add new record</p>
   </div>
 
   <div class="collection container z-depth-2" *ngFor="let record of latestRecords">

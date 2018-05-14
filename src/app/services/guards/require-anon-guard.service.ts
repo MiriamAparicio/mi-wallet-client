@@ -18,7 +18,7 @@ export class RequireAnonGuardService implements CanActivate {
         if (!user) {
           return true;
         } else {
-          this.router.navigate(['/']);
+          this.router.navigate(['/accounts/overview']);
           return false;
         }
       })

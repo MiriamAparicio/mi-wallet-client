@@ -5,6 +5,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RecordsService {
 
+  public types = ['Income', 'Expense'];
+
   private baseUrl = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) { }

@@ -2,20 +2,17 @@
   Loading...
 </div>
 <div class="collection-item grey lighten-4 {{categories[record.category].class}} row">
-  <div class="col 2 left">
+  <div class="col 3 left">
     <i class="material-icons">{{categories[record.category].icon}}</i>
   </div>
-  <div class="col 2 center">
+  <div class="col 3 center">
     <p>{{categories[record.category].label}}</p>
   </div>
-  <div class="col 2">
-    <!-- NOT WORKING ON THE DETAIL PAGE(RECORDS NOT POPULATED) NOT NEEDED BUT GOT ERROR -->
-    <p>{{record.account.name}}</p>
-  </div>
-  <div class="col 2">
+  <div class="col 3">
     <p>{{record.date | date: 'd/MM/yy'}}</p>
   </div>
-  <div class="col 2 right">
-    <p>{{record.amount}}</p>
+  <div class="col 3 right">
+    <p *ngIf="record.type=='expense'">-{{record.amount}}€</p>
+    <p *ngIf="record.type=='income'">{{record.amount}}€</p>
   </div>
 </div>

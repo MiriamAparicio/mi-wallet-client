@@ -17,7 +17,7 @@ export class AccountDetailPageComponent implements OnInit {
   idAccount: String;
   categories: Object;
   records: Array<any>;
-  accountBalance: number = 450;
+  accountBalance: number;
 
 
   constructor(
@@ -25,7 +25,11 @@ export class AccountDetailPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
-    private accountsService: AccountsService) { }
+    private accountsService: AccountsService) { 
+      this.records = [];
+      this.account = {};
+      this.accountBalance = 0;
+    }
 
   ngOnInit() {
 
@@ -46,7 +50,9 @@ export class AccountDetailPageComponent implements OnInit {
     this.accountsService.getRecords(this.idAccount)
     .then((data) => {
       this.records = data;
+      this.accountBalance = this.accountsService.computeBalance(this.accountBalance, this.records);
     });
+
     
   }
 

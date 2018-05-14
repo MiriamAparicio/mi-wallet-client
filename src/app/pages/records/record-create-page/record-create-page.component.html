@@ -65,8 +65,7 @@
           <p class="purple-text">Choose type</p>
           <select [(ngModel)]="type" name="type" class="browser-default" required [disabled]="processing" #typeField="ngModel">
             <option [value]="" disabled selected>Choose type</option>
-            <option [value]="income">Income</option>
-            <option [value]="expense">Expense</option>
+            <option *ngFor="let type of types" [value]="type">{{type}}</option>
           </select>
           <div *ngIf="feedbackEnabled && typeField.errors">
             <p *ngIf="typeField.errors.required" class="validation">type required</p>
