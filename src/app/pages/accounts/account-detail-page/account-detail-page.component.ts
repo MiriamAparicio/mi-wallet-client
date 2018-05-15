@@ -33,6 +33,8 @@ export class AccountDetailPageComponent implements OnInit {
 
   ngOnInit() {
 
+    // this.accountsService.balanceChange$.subscribe()
+
     this.route.params
       .subscribe((params) => {
         this.idAccount = params.id;

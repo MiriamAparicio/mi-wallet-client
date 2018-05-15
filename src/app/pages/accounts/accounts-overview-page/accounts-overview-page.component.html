@@ -50,6 +50,10 @@
     <app-records-list [record]="record" [categories]="categories"></app-records-list>
   </div>
 
+  <div class="container chart">
+    <canvas id="categoryChart">{{myChart}}</canvas>
+  </div>
+
   <div class="floating-buttons-container">
     <a [routerLink]="['/accounts/create']" class="buttons" tooltip="New account">
       <i class="material-icons account-icon">account_balance_wallet</i>

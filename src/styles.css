@@ -96,6 +96,7 @@ main {
 }
 
 .total-balance-card{
+  background-color: #d05ce3;
   padding-top: 20px;
   margin-bottom: 20px;
 }
@@ -284,4 +285,11 @@ select {
   background-color: #f5f5f5;
   background-size: 1px 100%, 20px 20px, 20px 20px, 20px 60%;
   background-position: right 20px center, right bottom, right bottom, right bottom;   
+}
+
+/*----charts---*/
+
+.chart {
+  padding-top: 50px;
+  margin-bottom: 50px;
 }

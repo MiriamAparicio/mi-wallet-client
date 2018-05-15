@@ -27,12 +27,14 @@ import { AuthService } from './services/auth.service';
 import { AccountsService } from './services/accounts.service';
 import { RecordsService } from './services/records.service';
 import { CategoriesService } from './services/categories.service';
+import { ChartsService } from './services/charts.service';
 
 
 /** guards */
 import { InitAuthGuardService } from './services/guards/init-auth-guard.service';
 import { RequireAnonGuardService } from './services/guards/require-anon-guard.service';
 import { RequireUserGuardService } from './services/guards/require-user-guard.service';
+
 
 
 
@@ -75,7 +77,8 @@ const routes: Routes = [
     RequireUserGuardService,
     AccountsService,
     RecordsService,
-    CategoriesService
+    CategoriesService,
+    ChartsService
   ],
   bootstrap: [AppComponent]
 })

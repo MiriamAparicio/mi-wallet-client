@@ -9,7 +9,19 @@ export class RecordsService {
 
   private baseUrl = 'http://localhost:3000';
 
+  // private newRecord: Subject<any> = new Subject();
+  // newRecord$: Observable<any> = this.newRecord.asObservable();
+
+
   constructor(private httpClient: HttpClient) { }
+
+  getAll(): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(`${this.baseUrl}/records`, options)
+      .toPromise();
+  }
 
   getLatest(): Promise<any> {
     const options = {
@@ -25,6 +37,8 @@ export class RecordsService {
     };
     return this.httpClient.post(`${this.baseUrl}/records`, record, options)
       .toPromise();
+      //.then(result => { this.newRecord.next(record); return result }})
   }
 
+  
 }
