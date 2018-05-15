@@ -1,7 +1,7 @@
-<div class="collection-item grey lighten-4 row" *ngIf="!record">
+<div class="collection-item grey lighten-4 row" *ngIf="!record || !categories">
   Loading...
 </div>
-<div class="collection-item grey lighten-4 {{categories[record.category].class}} row">
+<div *ngIf="record && categories" class="collection-item grey lighten-4 {{categories[record.category].class}} row">
   <div class="col 3 left">
     <i class="material-icons">{{categories[record.category].icon}}</i>
   </div>

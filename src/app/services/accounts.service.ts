@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
+
+import { RecordsService } from './records.service';
 
 @Injectable()
 export class AccountsService {
@@ -10,19 +15,24 @@ export class AccountsService {
   private ready: Promise<any>;
   private accounts = {};
 
+  private totalBalanceChange: Subject<any> = new Subject();
+  totalBalanceChange$: Observable<any> = this.totalBalanceChange.asObservable();
+
+  private userChange: Subject<any> = new Subject();
+  userChange$: Observable<any> = this.userChange.asObservable();
+
   constructor(
-    // private recordService: RecordService,
+    private recordService: RecordsService,
     private httpClient: HttpClient
   ) {
 
     this.ready = this.loadAll();
 
-    // this.recordService.newRercord$.subscribe((record) => {
-    //  this.accounts[record.account].balance += record.amount;
-    // })
-
+    this.recordService.newRecord$.subscribe((record) => {
+      this.accounts[record.account].balance += record.amount;
+      this.computeBalance();
+    })
    }
-
 
   private loadAll(): Promise<any> {
     const options = {
@@ -40,6 +50,7 @@ export class AccountsService {
 
   getAll(): Promise<any> {
     return this.ready.then(() => {
+      this.computeBalance();
       return Object.values(this.accounts);
     });
   }
@@ -70,15 +81,11 @@ export class AccountsService {
       .then((account:any) => this.accounts[account._id] = account);
   }
 
-  computeBalance(start: number, records: Array<any>): number {
-    let balance = start;
-    for (let i = 0; i < records.length; i++){
-      if (records[i].type === "expense") {
-        balance -= records[i].amount;
-      } else {
-        balance +=records[i].amount;
-      }
+  private computeBalance() {
+    let totalBalance = 0
+    for (let key in this.accounts) {
+      totalBalance += this.accounts[key].balance
     }
-    return balance;
+    this.totalBalanceChange.next(totalBalance)
   }
 }

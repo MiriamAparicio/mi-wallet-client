@@ -28,7 +28,7 @@ export class AccountDetailPageComponent implements OnInit {
     private accountsService: AccountsService) { 
       this.records = [];
       this.account = {};
-      this.accountBalance = 0;
+      //this.accountBalance = 0;
     }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class AccountDetailPageComponent implements OnInit {
     this.accountsService.getRecords(this.idAccount)
     .then((data) => {
       this.records = data;
-      this.accountBalance = this.accountsService.computeBalance(this.accountBalance, this.records);
+      //this.accountBalance = this.accountsService.computeBalance(this.accountBalance, this.records);
     });
 
     
