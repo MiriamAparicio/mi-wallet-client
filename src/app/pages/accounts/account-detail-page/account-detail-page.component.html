@@ -19,6 +19,9 @@
       <div class="card-content center">
         <p class="account-balance teal-text">{{account.balance}}€</p>
       </div>
+      <div class="right">
+        <button class="btn-flat"><i class="material-icons">delete</i></button>
+      </div>
     </div>
   </div>
 
@@ -35,7 +38,10 @@
   </div>
 
   <div class="floating-buttons-container">
-    <a [routerLink]="['/records/create']" class="buttons right btn-floating btn-large waves-effect waves-light purple">
+    <a [routerLink]="['/records/create']" class="buttons" tooltip="New record">
+      <i class="material-icons list-icon">list</i>
+    </a>
+    <a class="buttons btn-floating btn-large waves-effect waves-light purple">
       <i class="material-icons">add</i>
     </a>
   </div>

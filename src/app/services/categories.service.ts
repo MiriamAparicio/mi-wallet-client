@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class CategoriesService {
 
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000/categories';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -13,7 +13,7 @@ export class CategoriesService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/categories`, options) 
+    return this.httpClient.get(`${this.baseUrl}/`, options) 
       .toPromise();
   }
 

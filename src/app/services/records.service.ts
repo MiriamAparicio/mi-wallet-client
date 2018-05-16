@@ -10,7 +10,7 @@ export class RecordsService {
 
   public types = ['Income', 'Expense'];
 
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000/records';
 
   private newRecord: Subject<any> = new Subject();
   newRecord$: Observable<any> = this.newRecord.asObservable();
@@ -21,7 +21,7 @@ export class RecordsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/records`, options)
+    return this.httpClient.get(`${this.baseUrl}/`, options)
       .toPromise();
   }
 
@@ -29,7 +29,7 @@ export class RecordsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/records/latest`, options)
+    return this.httpClient.get(`${this.baseUrl}/latest`, options)
       .toPromise();
   }
 
@@ -37,7 +37,7 @@ export class RecordsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.post(`${this.baseUrl}/records`, record, options)
+    return this.httpClient.post(`${this.baseUrl}/`, record, options)
       .toPromise()
       .then(result => { 
         this.newRecord.next(record); 

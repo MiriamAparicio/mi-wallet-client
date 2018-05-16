@@ -38,27 +38,19 @@ export class AccountsOverviewPageComponent implements OnInit {
     this.latestRecords = [];
     this.accounts = [];
     this.myChart = [];
+    
   }
 
   ngOnInit() {
+    
     this.accountsService.totalBalanceChange$.subscribe((totalBalance) => {
       this.totalBalance = totalBalance;
     });
+    
 
     this.accountsService.getAll()
       .then((data) => {
-        this.accounts = data;
-        // calculating total balance
-        // let accountRecords = [];
-        // let accountTotal = 0;
-        // for (let i = 0; i < this.accounts.length; i++){
-        //   this.accountsService.getRecords(this.accounts[i]._id)
-        //   .then((data) => {
-        //     accountRecords = data;
-        //     accountTotal = this.accountsService.computeBalance(accountTotal, accountRecords);
-        //     this.totalBalance += accountTotal;
-        //   })
-        // }       
+        this.accounts = data;    
       });
 
     this.categoriesService.getAll()
@@ -69,7 +61,6 @@ export class AccountsOverviewPageComponent implements OnInit {
     this.recordsService.getAll()
       .then((data) => {
         this.allRecords = data;
-        //this.totalBalance = this.accountsService.computeBalance(this.totalBalance, this.allRecords);
       });
 
     this.recordsService.getLatest()

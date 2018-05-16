@@ -10,7 +10,7 @@ import { RecordsService } from './records.service';
 @Injectable()
 export class AccountsService {
 
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000/accounts';
 
   private ready: Promise<any>;
   private accounts = {};
@@ -18,10 +18,8 @@ export class AccountsService {
   private totalBalanceChange: Subject<any> = new Subject();
   totalBalanceChange$: Observable<any> = this.totalBalanceChange.asObservable();
 
-  private userChange: Subject<any> = new Subject();
-  userChange$: Observable<any> = this.userChange.asObservable();
 
-  constructor(
+  constructor (
     private recordService: RecordsService,
     private httpClient: HttpClient
   ) {
@@ -32,13 +30,13 @@ export class AccountsService {
       this.accounts[record.account].balance += record.amount;
       this.computeBalance();
     })
-   }
+  }
 
   private loadAll(): Promise<any> {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/accounts`, options)
+    return this.httpClient.get(`${this.baseUrl}/`, options)
       .toPromise()
       .then((accounts: Array<any>) => {
         accounts.forEach((account) => {
@@ -56,11 +54,6 @@ export class AccountsService {
   }
 
   getOne(id): Promise<any> {
-    // const options = {
-    //   withCredentials: true
-    // };
-    // return this.httpClient.get(`${this.baseUrl}/accounts/${id}`, options)
-    //   .toPromise();
     return this.ready.then(() => this.accounts[id]);
   }
 
@@ -68,7 +61,7 @@ export class AccountsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/accounts/${id}/records`, options)
+    return this.httpClient.get(`${this.baseUrl}/${id}/records`, options)
       .toPromise();
   }
 
@@ -76,9 +69,10 @@ export class AccountsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.post(`${this.baseUrl}/accounts`, account, options)
+    return this.httpClient.post(`${this.baseUrl}/`, account, options)
       .toPromise()
-      .then((account:any) => this.accounts[account._id] = account);
+      .then((account: any) => this.accounts[account._id] = account
+      );
   }
 
   private computeBalance() {
@@ -87,5 +81,16 @@ export class AccountsService {
       totalBalance += this.accounts[key].balance
     }
     this.totalBalanceChange.next(totalBalance)
+  }
+
+  delete(id) {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.delete(`${this.baseUrl}/${id}`, options)
+      .toPromise()
+      .then((account: any) => {
+        delete this.accounts[account._id];
+      })
   }
 }

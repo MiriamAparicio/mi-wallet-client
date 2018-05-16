@@ -293,3 +293,8 @@ select {
   padding-top: 50px;
   margin-bottom: 50px;
 }
+
+/*----delete icon----*/
+.delete-icon {
+  color: rgba(0,0,0,0.54)
+}

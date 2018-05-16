@@ -52,7 +52,7 @@
           <p class="purple-text">Choose account</p>
           <select [(ngModel)]="account" name="account" class="browser-default" required [disabled]="processing" #accountField="ngModel">
             <option [value]="" disabled selected>Choose account</option>
-            <option *ngFor="let account of accounts" [value]="account.name">{{account.name}}</option>
+            <option *ngFor="let account of accounts" [value]="account._id">{{account.name}}</option>
           </select>
           <div *ngIf="feedbackEnabled && accountField.errors">
             <p *ngIf="accountField.errors.required" class="validation">account required</p>

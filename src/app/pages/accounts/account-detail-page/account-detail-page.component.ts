@@ -52,9 +52,7 @@ export class AccountDetailPageComponent implements OnInit {
     this.accountsService.getRecords(this.idAccount)
     .then((data) => {
       this.records = data;
-      //this.accountBalance = this.accountsService.computeBalance(this.accountBalance, this.records);
     });
-
     
   }
 
