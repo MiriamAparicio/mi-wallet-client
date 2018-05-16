@@ -12,6 +12,9 @@ export class AccountsService {
 
   private baseUrl = 'http://localhost:3000/accounts';
 
+  //private deleteAccount: Subject<any> = new Subject();
+  //deleteAccount$: Observable<any> = this.deleteAccount.asObservable();
+
   private ready: Promise<any>;
   private accounts = {};
 
@@ -27,7 +30,11 @@ export class AccountsService {
     this.ready = this.loadAll();
 
     this.recordService.newRecord$.subscribe((record) => {
-      this.accounts[record.account].balance += record.amount;
+      if(record.type ==="expense"){
+        this.accounts[record.account].balance -= record.amount;
+      } else {
+        this.accounts[record.account].balance += record.amount;
+      }      
       this.computeBalance();
     })
   }
@@ -80,7 +87,7 @@ export class AccountsService {
     for (let key in this.accounts) {
       totalBalance += this.accounts[key].balance
     }
-    this.totalBalanceChange.next(totalBalance)
+    this.totalBalanceChange.next(totalBalance);
   }
 
   delete(id) {
@@ -89,8 +96,9 @@ export class AccountsService {
     };
     return this.httpClient.delete(`${this.baseUrl}/${id}`, options)
       .toPromise()
-      .then((account: any) => {
-        delete this.accounts[account._id];
+      .then((result) => {
+        delete this.accounts[id];
+        this.computeBalance();
       })
   }
 }

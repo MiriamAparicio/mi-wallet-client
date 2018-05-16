@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class AccountDetailPageComponent implements OnInit {
 
-  account:Object;
+  account:any;
   idAccount: String;
   categories: Object;
   records: Array<any>;
@@ -28,12 +28,9 @@ export class AccountDetailPageComponent implements OnInit {
     private accountsService: AccountsService) { 
       this.records = [];
       this.account = {};
-      //this.accountBalance = 0;
     }
 
   ngOnInit() {
-
-    // this.accountsService.balanceChange$.subscribe()
 
     this.route.params
       .subscribe((params) => {
@@ -54,6 +51,15 @@ export class AccountDetailPageComponent implements OnInit {
       this.records = data;
     });
     
+  }
+
+  delete() {
+    this.accountsService.delete(this.account._id)
+      .then(() => {
+        this.router.navigate(['/accounts/overview']);
+      })
+      .catch((err) => {
+      });
   }
 
   logout() {

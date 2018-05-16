@@ -12,7 +12,7 @@
     <p>{{record.date | date: 'd/MM/yy'}}</p>
   </div>
   <div class="col 3 right">
-    <p *ngIf="record.type=='expense'">-{{record.amount}}€</p>
-    <p *ngIf="record.type=='income'">{{record.amount}}€</p>
+    <p *ngIf="record.type=='expense'">-{{record.amount | number : '1.2-2'}}€</p>
+    <p *ngIf="record.type=='income'">{{record.amount | number : '1.2-2'}}€</p>
   </div>
 </div>

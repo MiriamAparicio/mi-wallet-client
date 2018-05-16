@@ -17,10 +17,10 @@
         <p class="left purple-text">{{account.name}}</p>
       </div>
       <div class="card-content center">
-        <p class="account-balance teal-text">{{account.balance}}€</p>
+        <p class="account-balance teal-text">{{account.balance | number : '1.2-2'}}€</p>
       </div>
       <div class="right">
-        <button class="btn-flat"><i class="material-icons">delete</i></button>
+        <button (click)="delete()" class="btn-flat"><i class="material-icons">delete</i></button>
       </div>
     </div>
   </div>
