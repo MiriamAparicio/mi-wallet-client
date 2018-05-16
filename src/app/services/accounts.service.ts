@@ -30,7 +30,7 @@ export class AccountsService {
     this.ready = this.loadAll();
 
     this.recordService.newRecord$.subscribe((record) => {
-      if(record.type ==="expense"){
+      if(record.type.toLowerCase() ==="expense"){
         this.accounts[record.account].balance -= record.amount;
       } else {
         this.accounts[record.account].balance += record.amount;
