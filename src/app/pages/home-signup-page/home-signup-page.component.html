@@ -16,7 +16,6 @@
           [feedbackEnabled]="feedbackEnabled" 
           [processing]="processing" 
           [authMode]="authMode" 
-          (invalid)="handleInvalid()"
           (submitData)="handleSubmitForm($event)">
         </app-auth-form>
         <div *ngIf="error" [ngSwitch]="error">

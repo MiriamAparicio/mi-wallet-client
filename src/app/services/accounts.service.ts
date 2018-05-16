@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
@@ -10,10 +12,7 @@ import { RecordsService } from './records.service';
 @Injectable()
 export class AccountsService {
 
-  private baseUrl = 'http://localhost:3000/accounts';
-
-  //private deleteAccount: Subject<any> = new Subject();
-  //deleteAccount$: Observable<any> = this.deleteAccount.asObservable();
+  private apiUrl = environment.apiUrl + '/accounts';
 
   private ready: Promise<any>;
   private accounts = {};
@@ -43,7 +42,7 @@ export class AccountsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/`, options)
+    return this.httpClient.get(`${this.apiUrl}/`, options)
       .toPromise()
       .then((accounts: Array<any>) => {
         accounts.forEach((account) => {
@@ -68,7 +67,7 @@ export class AccountsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/${id}/records`, options)
+    return this.httpClient.get(`${this.apiUrl}/${id}/records`, options)
       .toPromise();
   }
 
@@ -76,7 +75,7 @@ export class AccountsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.post(`${this.baseUrl}/`, account, options)
+    return this.httpClient.post(`${this.apiUrl}/`, account, options)
       .toPromise()
       .then((account: any) => this.accounts[account._id] = account
       );
@@ -94,7 +93,7 @@ export class AccountsService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.delete(`${this.baseUrl}/${id}`, options)
+    return this.httpClient.delete(`${this.apiUrl}/${id}`, options)
       .toPromise()
       .then((result) => {
         delete this.accounts[id];

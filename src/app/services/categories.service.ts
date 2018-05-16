@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class CategoriesService {
 
-  private baseUrl = 'http://localhost:3000/categories';
+  private apiUrl = environment.apiUrl + '/categories';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -13,7 +15,7 @@ export class CategoriesService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/`, options) 
+    return this.httpClient.get(`${this.apiUrl}/`, options) 
       .toPromise();
   }
 
