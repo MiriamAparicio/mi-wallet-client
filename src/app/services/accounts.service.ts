@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/toPromise';
 
 import { RecordsService } from './records.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AccountsService {
@@ -23,6 +24,7 @@ export class AccountsService {
 
   constructor (
     private recordService: RecordsService,
+    private authService: AuthService,
     private httpClient: HttpClient
   ) {
 
@@ -36,6 +38,9 @@ export class AccountsService {
       }      
       this.computeBalance();
     })
+    
+    //if the user change empty the cache, and if there's a new user load their accounts
+    this.authService.userChange$.subscribe( (user) => this.resetCache(!!user));
   }
 
   private loadAll(): Promise<any> {
@@ -50,6 +55,13 @@ export class AccountsService {
         })
         return accounts;
       })
+  }
+
+  private resetCache(doReload: boolean) {
+    this.accounts = {};
+    if (doReload) {
+      this.ready = this.loadAll();
+    }
   }
 
   getAll(): Promise<any> {
@@ -77,8 +89,7 @@ export class AccountsService {
     };
     return this.httpClient.post(`${this.apiUrl}/`, account, options)
       .toPromise()
-      .then((account: any) => this.accounts[account._id] = account
-      );
+      .then((account: any) => this.accounts[account._id] = account);
   }
 
   private computeBalance() {
