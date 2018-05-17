@@ -7,14 +7,14 @@ import { CategoriesService } from './categories.service';
 @Injectable()
 export class ChartsService {
 
-  constructor(private recordsService: RecordsService, private categoriesService: CategoriesService) { }
+  constructor (private recordsService: RecordsService, private categoriesService: CategoriesService) { }
 
   getChartCategories(): Promise<any> {
     let records: Array<any>;
     let categories: Object;
 
     let categoriesKeys: Array<any>;
-    let chartCategories: Array < any > =[];
+    let chartCategories: Array<any> = [];
 
     return this.categoriesService.getAll()
       .then((data) => {
@@ -28,14 +28,15 @@ export class ChartsService {
         for (let i = 0; i < records.length; i++) {
           let categoryRecord = records[i].category;
           for (let j = 0; j < categoriesKeys.length; j++) {
-            let categoryKey = categoriesKeys[j]
-            if (categoryRecord === categoryKey) {
-
-              if (chartCategories.includes(categories[categoryKey])) {
-                categories[categoryKey].count++;
-              } else {
-                categories[categoryKey].count = 1;
-                chartCategories.push(categories[categoryKey])
+            let categoryKey = categoriesKeys[j];
+            if (categoryRecord !== "salary") {
+              if (categoryRecord === categoryKey) {
+                if (chartCategories.includes(categories[categoryKey])) {
+                  categories[categoryKey].count += records[i].amount;
+                } else {
+                  categories[categoryKey].count = records[i].amount;
+                  chartCategories.push(categories[categoryKey]);
+                }
               }
             }
           }

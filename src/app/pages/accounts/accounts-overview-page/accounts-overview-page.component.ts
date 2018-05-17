@@ -27,7 +27,7 @@ export class AccountsOverviewPageComponent implements OnInit {
   myChart: Object;
   categoriesChart: Array<any>;
 
-  constructor(
+  constructor (
     private authService: AuthService,
     private router: Router,
     private categoriesService: CategoriesService,
