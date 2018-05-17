@@ -1,27 +1,31 @@
-# MiWalletClient
+# Mi-Wallet
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+This project is the final project of Ironhack Web Development Bootcamp
 
-## Development server
+## User stories
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+User can:
 
-## Code scaffolding
+* Signup
+* Login
+* Logout
+* Create a new account
+* Add records to the accounts
+* See the total balance of the accounts
+* See balance of each account
+* See chart with records per category
+* Delete an account
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tecnologies
 
-## Build
+For the frontend (this repository) I used Angular CLI as a project generator.
+Also [Materialized](https://materializecss.com/) framework for the styling, [ChartJs](https://www.chartjs.org/) for the charts, and [Material Design](https://material.io/) style guide.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+For the backend [Mi-Wallet-Api](https://github.com/MiriamAparicio/mi-wallet-api) I used Express generator, and some packages, the more interesting is [PubSub-JS](https://www.npmjs.com/package/pubsub-js) that is a messaging pattern that provides greater network scalability.
 
-## Running unit tests
+The local database was [MongoDB](https://docs.mongodb.com/), and [NodeJs](https://nodejs.org/en/) as a local server.
+And [Heroku](https://www.heroku.com/home) as a cloud platform for the deployment.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Try the app
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[Mi-Wallet](https://mi-wallet.herokuapp.com/)
