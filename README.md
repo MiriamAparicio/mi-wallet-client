@@ -16,7 +16,7 @@ User can:
 * See chart with records per category
 * Delete an account
 
-## Tecnologies
+## Technologies
 
 For the frontend (this repository) I used Angular CLI as a project generator.
 Also [Materialized](https://materializecss.com/) framework for the styling, [ChartJs](https://www.chartjs.org/) for the charts, and [Material Design](https://material.io/) style guide.
