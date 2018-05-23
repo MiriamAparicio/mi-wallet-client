@@ -26,6 +26,6 @@ For the backend [Mi-Wallet-Api](https://github.com/MiriamAparicio/mi-wallet-api)
 The local database was [MongoDB](https://docs.mongodb.com/), and [NodeJs](https://nodejs.org/en/) as a local server.
 And [Heroku](https://www.heroku.com/home) as a cloud platform for the deployment.
 
-## Try the app
+## Try the app on Chrome and Mozilla Firefox(not available on Safari, yet...)
 
 [Mi-Wallet](https://mi-wallet.herokuapp.com/)

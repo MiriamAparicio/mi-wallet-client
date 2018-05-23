@@ -22,7 +22,6 @@ export class AccountsOverviewPageComponent implements OnInit {
   allRecords: Array<any>;
   latestRecords: Array<any>;
   totalBalance: number;
-  // accountBalance: number = 1025;
 
   myChart: Object;
   categoriesChart: Array<any>;
